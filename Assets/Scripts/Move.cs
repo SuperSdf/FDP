@@ -6,6 +6,13 @@ public class Move : MonoBehaviour
 {
 
     public float speed = 1; // speed in meters per second
+    public float thrust = 10; 
+    public Rigidbody rb;
+
+    void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
 
     void Update()
     {
@@ -15,10 +22,15 @@ public class Move : MonoBehaviour
                                                // move this object at frame rate independent speed:
         transform.position += moveDir * speed * Time.deltaTime;
 
-        //if (Input.GetKeyDown("Space"))
-        //{
-        //    rigidBody.AddForce(0, forceToBeApplied, 0);
-        //}
+        if (Input.GetKeyDown("space"))
+        {
+            Jump();
+        }
 
+    }
+
+    void Jump()
+    {
+        rb.AddForce(0, thrust, 0);
     }
 }
